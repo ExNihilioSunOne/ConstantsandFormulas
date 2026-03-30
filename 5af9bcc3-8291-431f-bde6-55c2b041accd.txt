@@ -1,0 +1,386 @@
+# Pi Algorithm and Formula-Synthesis Treatise
+
+**Artit Pongpira, in collaboration with Macaron AI**
+
+## Abstract
+This treatise records the current state of a developing Pi algorithm and formula-synthesis program built from two linked branches. The first branch is a rigorous affine-coefficient framework yielding exact rational approximation families converging non-circularly to \(\pi\). The second branch is a rational remainder-cascade framework built from selected rational fragments, exact remainder identities, defect variables, and balance laws. The present document is intended as a concise but complete master record of the strongest exact results, asymptotic results, structural interpretations, and current open problems.
+
+## 1. Introduction
+The project began from rational-fragment observations and remainder patterns near \(\pi\). Over time, these exploratory data were reorganized into a more structured mathematical program. At present the work has two principal branches:
+
+1. an affine-coefficient branch, which is the rigorous core;
+2. a remainder-cascade branch, which is an exploratory but increasingly structured synthesis framework.
+
+The central goal is to understand whether symmetric discrete systems and rational fragment networks can generate meaningful approximation, correction, balance, and possibly enclosure mechanisms for \(\pi\).
+
+## 2. The affine-coefficient framework
+For integers \(m\ge 1\) and \(n\ge 1\), define
+
+\[
+P_m(z):=z^{-m}+z^{-m+1}+\cdots+z^m,
+\]
+
+and define the central coefficient
+
+\[
+C_{n,m}:=[z^0]P_m(z)^n.
+\]
+
+Equivalently,
+
+\[
+C_{n,m}=[z^{nm}](1+z+\cdots+z^{2m})^n.
+\]
+
+If
+
+\[
+N_{n,m}(k):=[z^k]P_m(z)^n,
+\]
+
+then \(N_{n,m}(k)\) counts the number of tuples \((r_1,\dots,r_n)\in\{-m,\dots,m\}^n\) satisfying
+
+\[
+r_1+\cdots+r_n=k.
+\]
+
+The coefficients satisfy the exact recurrence
+
+\[
+N_{n+1,m}(k)=\sum_{r=-m}^{m}N_{n,m}(k-r),
+\qquad
+C_{n,m}=N_{n,m}(0).
+\]
+
+An exact integral representation is
+
+\[
+C_{n,m}=\frac{1}{2\pi}\int_{-\pi}^{\pi}f_m(\theta)^n\,d\theta,
+\]
+
+where
+
+\[
+f_m(\theta):=\sum_{r=-m}^{m}e^{ir\theta}=1+2\sum_{r=1}^{m}\cos(r\theta).
+\]
+
+## 3. The non-circular Pi approximation family
+For each fixed \(m\ge 1\), the central coefficient satisfies the leading asymptotic law
+
+\[
+C_{n,m}\sim (2m+1)^n\sqrt{\frac{3}{2\pi n\,m(m+1)}}
+\qquad (n\to\infty).
+\]
+
+This gives the rational approximation family
+
+\[
+\Pi_{n,m}:=\frac{3(2m+1)^{2n}}{2m(m+1)\,n\,C_{n,m}^2}.
+\]
+
+Then
+
+\[
+\Pi_{n,m}\to\pi
+\qquad (n\to\infty).
+\]
+
+Each finite-stage quantity \(\Pi_{n,m}\) is rational, while its convergence to \(\pi\) is asymptotic.
+
+## 4. Correction hierarchy
+The approximation family satisfies the asymptotic expansion
+
+\[
+\Pi_{n,m}=\pi\left(1+\frac{E_m}{n}+\frac{F_m}{n^2}+O(n^{-3})\right),
+\]
+
+where
+
+\[
+E_m=\frac{3(2m^2+2m+1)}{20m(m+1)},
+\]
+
+and
+
+\[
+F_m=\frac{9(44m^4+88m^3+77m^2+33m+8)}{22400\,m^2(m+1)^2}.
+\]
+
+Define corrected families
+
+\[
+\Pi_{n,m}^{(1)}:=\Pi_{n,m}\left(1-\frac{E_m}{n}\right),
+\]
+
+\[
+\Pi_{n,m}^{(2)}:=\Pi_{n,m}\left(1-\frac{E_m}{n}+\frac{E_m^2-F_m}{n^2}\right).
+\]
+
+Then
+
+\[
+\Pi_{n,m}^{(1)}=\pi+O(n^{-2}),
+\qquad
+\Pi_{n,m}^{(2)}=\pi+O(n^{-3}).
+\]
+
+## 5. Toward asymptotic upper and lower bounds
+The sign structure of the first two corrections suggests a possible eventual enclosure scheme.
+
+Since \(E_m>0\), the raw family \(\Pi_{n,m}\) is asymptotically expected to approach \(\pi\) from above. If
+
+\[
+G_m:=F_m-E_m^2,
+\]
+
+then one finds \(G_m<0\), so \(\Pi_{n,m}^{(1)}\) is asymptotically expected to approach \(\pi\) from below. This leads to the natural conjecture that for each fixed \(m\ge 1\), there exists \(N(m)\) such that
+
+\[
+\Pi_{n,m}^{(1)}<\pi<\Pi_{n,m}
+\qquad (n\ge N(m)).
+\]
+
+This is not yet a theorem. What is still needed is explicit control of the neglected remainder terms.
+
+## 6. The remainder-cascade framework
+Define the rational generators
+
+\[
+A=\frac{179}{212},\qquad
+B=\frac{381}{398},\qquad
+C=\frac{23}{35},\qquad
+D=\frac{199}{290}.
+\]
+
+Define the primary remainder
+
+\[
+R_1:=\pi-A-B-C.
+\]
+
+Define the compressed remainder
+
+\[
+R_2:=R_1+C+D-2.
+\]
+
+Since the \(C\)-terms cancel,
+
+\[
+R_2=\pi-A-B+D-2.
+\]
+
+Using
+
+\[
+A+B=\frac{76007}{42188},
+\]
+
+one obtains the exact simplification
+
+\[
+R_2=\pi-\frac{19057829}{6117260}.
+\]
+
+Numerically,
+
+\[
+R_2\approx 0.0261734953392038.
+\]
+
+Define the fine remainder
+
+\[
+R_3:=A+B-\frac95.
+\]
+
+This simplifies exactly to
+
+\[
+R_3=\frac{343}{210940}.
+\]
+
+Numerically,
+
+\[
+R_3\approx 0.0016260548023134.
+\]
+
+Define the cascade ratio
+
+\[
+Q:=\frac{R_2}{R_3}.
+\]
+
+Then
+
+\[
+Q=\frac{\pi-\frac{19057829}{6117260}}{\frac{343}{210940}}
+=\frac{210940}{343}\pi-\frac{19057829}{9947}.
+\]
+
+Thus the cascade ratio is an exact affine-linear transform of \(\pi\).
+
+## 7. Reduced cascade variables and defects
+Let
+
+\[
+S:=A+B=\frac{p}{q},
+\qquad
+D=\frac{r}{s}.
+\]
+
+Then the reduced cascade quantities are
+
+\[
+R_3=S-\frac95,
+\qquad
+R_2=\pi-S+D-2.
+\]
+
+Introduce the defects
+
+\[
+\delta_1:=5p-9q,
+\qquad
+\delta_2:=\pi-\left(2+\frac{p}{q}-\frac{r}{s}\right).
+\]
+
+Then
+
+\[
+R_3=\frac{\delta_1}{5q},
+\qquad
+R_2=\delta_2,
+\qquad
+Q=\frac{5q}{\delta_1}\,\delta_2.
+\]
+
+This turns the cascade branch into an explicit search framework.
+
+## 8. Balance laws
+Two exact balance laws arise naturally.
+
+### Opposite-sign balance
+If
+
+\[
+R_2=-R_3,
+\]
+
+then
+
+\[
+D=\frac{19}{5}-\pi.
+\]
+
+### Same-sign balance
+If
+
+\[
+R_2=R_3,
+\]
+
+then
+
+\[
+D=2S+\frac15-\pi.
+\]
+
+These laws define two distinct balanced regimes in the cascade family.
+
+The original fraction
+
+\[
+\frac{23}{35}
+\]
+
+is structurally meaningful because it is a simple rational approximation to the constant
+
+\[
+\frac{19}{5}-\pi.
+\]
+
+## 9. BEC framework at a glance
+The current program may be organized as:
+
+- **B = Balance**: internal symmetry of the two remainder layers;
+- **E = Enclosure**: possible asymptotic upper/lower bracketing of \(\pi\);
+- **C = Cascade**: constructive rational search framework.
+
+Main BEC anchor formulas are:
+
+\[
+D=\frac{19}{5}-\pi,
+\qquad
+D=2S+\frac15-\pi,
+\]
+
+\[
+\Pi_{n,m}\to\pi,
+\qquad
+\Pi_{n,m}^{(1)}<\pi<\Pi_{n,m}\ \text{(conjecturally for large } n\text{)},
+\]
+
+\[
+R_3=\frac{\delta_1}{5q},
+\qquad
+R_2=\delta_2,
+\qquad
+Q=\frac{5q}{\delta_1}\delta_2.
+\]
+
+## 10. Statistics, ratings, and evaluation
+### Main exact results
+- Central coefficient law: exact and foundational.
+- Compressed remainder identity:
+  \[
+  R_2=\pi-\frac{19057829}{6117260}.
+  \]
+- Fine remainder identity:
+  \[
+  R_3=\frac{343}{210940}.
+  \]
+- Balance constant:
+  \[
+  \frac{19}{5}-\pi.
+  \]
+
+### Main asymptotic results
+- \(\Pi_{n,m}\to\pi\)
+- correction hierarchy through \(O(n^{-3})\)
+- plausible eventual upper/lower enclosure pair
+
+### Ratings
+- Exactness of affine branch: very high
+- Exactness of cascade branch: high in local identities
+- Asymptotic strength: high
+- Balance interpretation strength: moderate to high
+- Bound-theorem completeness: not yet complete
+- Archive priority: very high
+
+### Evaluation
+The affine branch is the rigorous core of the project. The cascade branch has matured into a genuine structural search framework with exact subresults and balance laws. The balance layer has reinterpreted older fragment data in a cleaner and more unified way.
+
+## 11. Current limitations
+The following limitations remain explicit:
+
+1. no finite exact identity for \(\pi\) has yet been established;
+2. the affine branch converges algebraically rather than geometrically;
+3. the enclosure conjecture is not yet a theorem;
+4. the cascade branch is not yet proven canonical or universal.
+
+## 12. Open problems
+1. Prove explicit one-sided remainder bounds sufficient for an enclosure theorem.
+2. Extend the correction hierarchy beyond \(O(n^{-3})\).
+3. Develop theorem-guided candidate search in the low-defect cascade families.
+4. Clarify which original rational fragments arise canonically from the balance laws.
+5. Produce a final unified archival paper from the current ledger and treatise material.
+
+## 13. Final program statement
+The project currently develops a Pi algorithm and formula-synthesis framework through two linked mechanisms:
+
+1. a rigorous symmetric affine coefficient family producing non-circular rational approximants to \(\pi\) with explicit correction hierarchy;
+2. an exploratory rational remainder-cascade system producing exact affine-linear Pi transforms, defect-based search formulas, and balance laws.
+
+This is the current concise and complete master summary of the project.
